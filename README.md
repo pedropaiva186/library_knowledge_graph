@@ -43,7 +43,6 @@ O grafo suporta raciocinio semântico (propriedades inversas, transitividade, si
 
 ```
 sbc_books_project/
-├── AGENTS.md              # Descricao do projeto para agentes
 ├── README.md              # Esta documentacao
 ├── LICENSE                # Licenca MIT
 ├── .gitignore             # Arquivos ignorados pelo Git
