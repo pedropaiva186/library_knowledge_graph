@@ -1,0 +1,274 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix lib:  <http://mylibrary.org/ontology#> .
+
+# ============================================================
+# GENRES (4 instances)
+# ============================================================
+
+lib:Genre_Fiction rdf:type lib:Genre ;
+    rdfs:label "Fiction" ;
+    rdfs:comment "Literary works of imagination." .
+
+lib:Genre_Technology rdf:type lib:Genre ;
+    rdfs:label "Technology" ;
+    rdfs:comment "Books about computing, software, and technology." .
+
+lib:Genre_Science rdf:type lib:Genre ;
+    rdfs:label "Science" ;
+    rdfs:comment "Books about scientific topics and discoveries." .
+
+lib:Genre_Philosophy rdf:type lib:Genre ;
+    rdfs:label "Philosophy" ;
+    rdfs:comment "Books exploring philosophical ideas and thought." .
+
+# ============================================================
+# PUBLISHERS (3 instances)
+# ============================================================
+
+lib:Publisher_Penguin rdf:type lib:Publisher ;
+    lib:name "Penguin Books" ;
+    lib:publisherCountry "United Kingdom" ;
+    rdfs:label "Penguin Books" .
+
+lib:Publisher_OReilly rdf:type lib:Publisher ;
+    lib:name "O'Reilly Media" ;
+    lib:publisherCountry "United States" ;
+    rdfs:label "O'Reilly Media" .
+
+lib:Publisher_Planeta rdf:type lib:Publisher ;
+    lib:name "Planeta" ;
+    lib:publisherCountry "Spain" ;
+    rdfs:label "Planeta" .
+
+lib:Publisher_CompanhiaDasLetras rdf:type lib:Publisher ;
+    lib:name "Companhia das Letras" ;
+    lib:publisherCountry "Brazil" ;
+    rdfs:label "Companhia das Letras" .
+
+lib:Publisher_Gallimard rdf:type lib:Publisher ;
+    lib:name "Gallimard" ;
+    lib:publisherCountry "France" ;
+    rdfs:label "Gallimard" .
+
+# ============================================================
+# AUTHORS (8 instances)
+# ============================================================
+
+lib:Author_Orwell rdf:type lib:Author ;
+    lib:name "George Orwell" ;
+    lib:nationality "British" ;
+    rdfs:label "George Orwell" .
+
+lib:Author_Cervantes rdf:type lib:Author ;
+    lib:name "Miguel de Cervantes" ;
+    lib:nationality "Spanish" ;
+    rdfs:label "Miguel de Cervantes" .
+
+lib:Author_Hawking rdf:type lib:Author ;
+    lib:name "Stephen Hawking" ;
+    lib:nationality "British" ;
+    rdfs:label "Stephen Hawking" .
+
+lib:Author_Martin rdf:type lib:Author ;
+    lib:name "Robert C. Martin" ;
+    lib:nationality "American" ;
+    rdfs:label "Robert C. Martin" .
+
+lib:Author_Borges rdf:type lib:Author ;
+    lib:name "Jorge Luis Borges" ;
+    lib:nationality "Argentine" ;
+    rdfs:label "Jorge Luis Borges" .
+
+lib:Author_Tolkien rdf:type lib:Author ;
+    lib:name "J.R.R. Tolkien" ;
+    lib:nationality "British" ;
+    rdfs:label "J.R.R. Tolkien" .
+
+lib:Author_Machado rdf:type lib:Author ;
+    lib:name "Machado de Assis" ;
+    lib:nationality "Brazilian" ;
+    rdfs:label "Machado de Assis" .
+
+lib:Author_SaintExupery rdf:type lib:Author ;
+    lib:name "Antoine de Saint-Exupéry" ;
+    lib:nationality "French" ;
+    rdfs:label "Antoine de Saint-Exupéry" .
+
+# ============================================================
+# EDITORS (2 instances)
+# ============================================================
+
+lib:Editor_Davidson rdf:type lib:Editor ;
+    lib:name "Anna Davidson" ;
+    lib:nationality "American" ;
+    rdfs:label "Anna Davidson" .
+
+lib:Editor_Murray rdf:type lib:Editor ;
+    lib:name "James Murray" ;
+    lib:nationality "British" ;
+    rdfs:label "James Murray" .
+
+# ============================================================
+# BOOKS — NOVELS (10 instances)
+# ============================================================
+
+lib:Book_1984 rdf:type lib:Novel ;
+    lib:title "1984" ;
+    lib:publishedYear "1949"^^xsd:integer ;
+    lib:isbn "978-0-451-52493-5" ;
+    lib:numberOfPages 328 ;
+    lib:writtenBy lib:Author_Orwell ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    lib:relatedTo lib:Book_DonQuixote ;
+    rdfs:label "1984" .
+
+lib:Book_DonQuixote rdf:type lib:Novel ;
+    lib:title "Don Quixote" ;
+    lib:publishedYear "1605"^^xsd:integer ;
+    lib:isbn "978-0-06-093434-7" ;
+    lib:numberOfPages 863 ;
+    lib:writtenBy lib:Author_Cervantes ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Planeta ;
+    lib:relatedTo lib:Book_1984 ;
+    rdfs:label "Don Quixote" .
+
+lib:Book_Ficciones rdf:type lib:Novel ;
+    lib:title "Ficciones" ;
+    lib:publishedYear "1944"^^xsd:integer ;
+    lib:isbn "978-0-8021-3030-3" ;
+    lib:numberOfPages 198 ;
+    lib:writtenBy lib:Author_Borges ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    lib:relatedTo lib:Book_1984 ;
+    rdfs:label "Ficciones" .
+
+lib:Book_LordOfTheRings rdf:type lib:Novel ;
+    lib:title "The Lord of the Rings" ;
+    lib:publishedYear "1954"^^xsd:integer ;
+    lib:isbn "978-0-618-64015-7" ;
+    lib:numberOfPages 1178 ;
+    lib:writtenBy lib:Author_Tolkien ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    lib:relatedTo lib:Book_Ficciones ;
+    rdfs:label "The Lord of the Rings" .
+
+lib:Book_AnimalFarm rdf:type lib:Novel ;
+    lib:title "Animal Farm" ;
+    lib:publishedYear "1945"^^xsd:integer ;
+    lib:isbn "978-0-451-52634-2" ;
+    lib:numberOfPages 112 ;
+    lib:writtenBy lib:Author_Orwell ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    lib:relatedTo lib:Book_1984 ;
+    rdfs:label "Animal Farm" .
+
+lib:Book_NeverEndingStory rdf:type lib:Novel ;
+    lib:title "The Neverending Story" ;
+    lib:publishedYear "1979"^^xsd:integer ;
+    lib:isbn "978-0-14-032889-4" ;
+    lib:numberOfPages 400 ;
+    lib:writtenBy lib:Author_Orwell ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    rdfs:label "The Neverending Story" .
+
+lib:Book_BraveNewWorld rdf:type lib:Novel ;
+    lib:title "Brave New World" ;
+    lib:publishedYear "1932"^^xsd:integer ;
+    lib:isbn "978-0-06-085052-4" ;
+    lib:numberOfPages 288 ;
+    lib:writtenBy lib:Author_Hawking ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    rdfs:label "Brave New World" .
+
+lib:Book_Fahrenheit rdf:type lib:Novel ;
+    lib:title "Fahrenheit 451" ;
+    lib:publishedYear "1953"^^xsd:integer ;
+    lib:isbn "978-1-4516-7331-9" ;
+    lib:numberOfPages 194 ;
+    lib:writtenBy lib:Author_Tolkien ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    rdfs:label "Fahrenheit 451" .
+
+lib:Book_BrasCubas rdf:type lib:Novel ;
+    lib:title "Memorias Postumas de Bras Cubas" ;
+    lib:publishedYear "1881"^^xsd:integer ;
+    lib:isbn "978-85-359-0001-5" ;
+    lib:numberOfPages 256 ;
+    lib:writtenBy lib:Author_Machado ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_CompanhiaDasLetras ;
+    lib:relatedTo lib:Book_1984 ;
+    rdfs:label "Memorias Postumas de Bras Cubas" .
+
+lib:Book_PetitPrince rdf:type lib:Novel ;
+    lib:title "Le Petit Prince" ;
+    lib:publishedYear "1943"^^xsd:integer ;
+    lib:isbn "978-2-07-061275-8" ;
+    lib:numberOfPages 96 ;
+    lib:writtenBy lib:Author_SaintExupery ;
+    lib:belongsToGenre lib:Genre_Fiction ;
+    lib:publishedBy lib:Publisher_Gallimard ;
+    lib:relatedTo lib:Book_Ficciones ;
+    rdfs:label "Le Petit Prince" .
+
+# ============================================================
+# BOOKS — TEXTBOOKS (2 instances)
+# ============================================================
+
+lib:Book_CleanCode rdf:type lib:TextBook ;
+    lib:title "Clean Code" ;
+    lib:publishedYear "2008"^^xsd:integer ;
+    lib:isbn "978-0-13-235088-4" ;
+    lib:numberOfPages 464 ;
+    lib:writtenBy lib:Author_Martin ;
+    lib:editedBy lib:Editor_Davidson ;
+    lib:belongsToGenre lib:Genre_Technology ;
+    lib:publishedBy lib:Publisher_OReilly ;
+    rdfs:label "Clean Code" .
+
+lib:Book_PragmaticProgrammer rdf:type lib:TextBook ;
+    lib:title "The Pragmatic Programmer" ;
+    lib:publishedYear "1999"^^xsd:integer ;
+    lib:isbn "978-0-13-595705-9" ;
+    lib:numberOfPages 352 ;
+    lib:writtenBy lib:Author_Martin ;
+    lib:editedBy lib:Editor_Murray ;
+    lib:belongsToGenre lib:Genre_Technology ;
+    lib:publishedBy lib:Publisher_OReilly ;
+    rdfs:label "The Pragmatic Programmer" .
+
+# ============================================================
+# BOOKS — SHORT STORY COLLECTIONS (2 instances)
+# ============================================================
+
+lib:Book_Labyrinths rdf:type lib:ShortStoryCollection ;
+    lib:title "Labyrinths" ;
+    lib:publishedYear "1962"^^xsd:integer ;
+    lib:isbn "978-0-8112-0016-3" ;
+    lib:numberOfPages 240 ;
+    lib:writtenBy lib:Author_Borges ;
+    lib:belongsToGenre lib:Genre_Philosophy ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    rdfs:label "Labyrinths" .
+
+lib:Book_BriefHistory rdf:type lib:ShortStoryCollection ;
+    lib:title "A Brief History of Time" ;
+    lib:publishedYear "1988"^^xsd:integer ;
+    lib:isbn "978-0-553-38016-3" ;
+    lib:numberOfPages 256 ;
+    lib:writtenBy lib:Author_Hawking ;
+    lib:editedBy lib:Editor_Davidson ;
+    lib:belongsToGenre lib:Genre_Science ;
+    lib:publishedBy lib:Publisher_Penguin ;
+    rdfs:label "A Brief History of Time" .

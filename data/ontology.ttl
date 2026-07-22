@@ -1,0 +1,165 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix lib:  <http://mylibrary.org/ontology#> .
+
+lib:ontology rdf:type owl:Ontology ;
+    rdfs:label "Personal Book Library Ontology" ;
+    rdfs:comment "An ontology modeling a personal book library with books, authors, genres, and publishers." .
+
+# ============================================================
+# CLASSES
+# ============================================================
+
+lib:Resource rdf:type owl:Class ;
+    rdfs:label "Resource" ;
+    rdfs:comment "Root class for all entities in the library." .
+
+lib:Book rdf:type owl:Class ;
+    rdfs:subClassOf lib:Resource ;
+    rdfs:label "Book" ;
+    rdfs:comment "A book in the library." .
+
+lib:Novel rdf:type owl:Class ;
+    rdfs:subClassOf lib:Book ;
+    rdfs:label "Novel" ;
+    rdfs:comment "A fiction book, typically a narrative prose work." .
+
+lib:TextBook rdf:type owl:Class ;
+    rdfs:subClassOf lib:Book ;
+    rdfs:label "TextBook" ;
+    rdfs:comment "An academic or educational book used for study." .
+
+lib:ShortStoryCollection rdf:type owl:Class ;
+    rdfs:subClassOf lib:Book ;
+    rdfs:label "Short Story Collection" ;
+    rdfs:comment "A book containing a collection of short stories." .
+
+lib:Person rdf:type owl:Class ;
+    rdfs:subClassOf lib:Resource ;
+    rdfs:label "Person" ;
+    rdfs:comment "A person involved in the creation or editing of a book." .
+
+lib:Author rdf:type owl:Class ;
+    rdfs:subClassOf lib:Person ;
+    rdfs:label "Author" ;
+    rdfs:comment "A person who wrote a book." .
+
+lib:Editor rdf:type owl:Class ;
+    rdfs:subClassOf lib:Person ;
+    rdfs:label "Editor" ;
+    rdfs:comment "A person who edited a book." .
+
+lib:Genre rdf:type owl:Class ;
+    rdfs:subClassOf lib:Resource ;
+    rdfs:label "Genre" ;
+    rdfs:comment "A literary or thematic genre that categorizes books." .
+
+lib:Publisher rdf:type owl:Class ;
+    rdfs:subClassOf lib:Resource ;
+    rdfs:label "Publisher" ;
+    rdfs:comment "A company or organization that publishes books." .
+
+# ============================================================
+# PROPRIEDADES DOS OBJETOS
+# ============================================================
+
+lib:writtenBy rdf:type owl:ObjectProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range lib:Author ;
+    rdfs:label "written by" ;
+    rdfs:comment "Links a book to the author who wrote it." .
+
+lib:editedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range lib:Editor ;
+    rdfs:label "edited by" ;
+    rdfs:comment "Links a book to the editor who edited it." .
+
+lib:belongsToGenre rdf:type owl:ObjectProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range lib:Genre ;
+    rdfs:label "belongs to genre" ;
+    rdfs:comment "Links a book to its literary genre." .
+
+lib:publishedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range lib:Publisher ;
+    rdfs:label "published by" ;
+    rdfs:comment "Links a book to its publisher." .
+
+lib:authorOf rdf:type owl:ObjectProperty ;
+    rdfs:domain lib:Author ;
+    rdfs:range lib:Book ;
+    rdfs:label "author of" ;
+    rdfs:comment "Inverse of writtenBy: links an author to a book they wrote." ;
+    owl:inverseOf lib:writtenBy .
+
+lib:relatedTo rdf:type owl:ObjectProperty, owl:TransitiveProperty, owl:SymmetricProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range lib:Book ;
+    rdfs:label "related to" ;
+    rdfs:comment "Transitive and symmetric relation between books. If A is related to B, then B is related to A. If A relatedTo B and B relatedTo C, then A relatedTo C." .
+
+# ============================================================
+# PROPRIEDADES DOS DADOS
+# ============================================================
+
+lib:title rdf:type owl:DatatypeProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range xsd:string ;
+    rdfs:label "title" ;
+    rdfs:comment "The title of a book." .
+
+lib:name rdf:type owl:DatatypeProperty ;
+    rdfs:domain lib:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "name" ;
+    rdfs:comment "The full name of a person." .
+
+lib:publishedYear rdf:type owl:DatatypeProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range xsd:integer ;
+    rdfs:label "published year" ;
+    rdfs:comment "The year a book was first published." .
+
+lib:isbn rdf:type owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range xsd:string ;
+    rdfs:label "ISBN" ;
+    rdfs:comment "The ISBN (International Standard Book Number) of a book. Functional because each book has exactly one ISBN." .
+
+lib:numberOfPages rdf:type owl:DatatypeProperty ;
+    rdfs:domain lib:Book ;
+    rdfs:range xsd:integer ;
+    rdfs:label "number of pages" ;
+    rdfs:comment "The total number of pages in a book." .
+
+lib:nationality rdf:type owl:DatatypeProperty ;
+    rdfs:domain lib:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "nationality" ;
+    rdfs:comment "The nationality of a person." .
+
+lib:publisherCountry rdf:type owl:DatatypeProperty ;
+    rdfs:domain lib:Publisher ;
+    rdfs:range xsd:string ;
+    rdfs:label "publisher country" ;
+    rdfs:comment "The country where the publisher is headquartered." .
+
+# ============================================================
+# CONSTRUCOES OWL
+# ============================================================
+
+# authorOf eh o inverso de writtenBy
+lib:authorOf owl:inverseOf lib:writtenBy .
+
+# relatedTo eh transitivo e simetrico
+lib:relatedTo rdf:type owl:TransitiveProperty, owl:SymmetricProperty .
+
+# isbn eh uma propriedade unica (cada livro tem exatamente um ISBN)
+lib:isbn rdf:type owl:FunctionalProperty .
+
+# Author e Publisher sao disjuntos
+lib:Author owl:disjointWith lib:Publisher .
