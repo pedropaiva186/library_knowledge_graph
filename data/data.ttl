@@ -25,7 +25,7 @@ lib:Genre_Philosophy rdf:type lib:Genre ;
     rdfs:comment "Books exploring philosophical ideas and thought." .
 
 # ============================================================
-# PUBLISHERS (3 instances)
+# PUBLISHERS (5 instances)
 # ============================================================
 
 lib:Publisher_Penguin rdf:type lib:Publisher ;

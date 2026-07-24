@@ -49,7 +49,7 @@ sbc_books_project/
 ├── requirements.txt       # Dependencias do projeto
 ├── data/
 │   ├── ontology.ttl       # Ontologia OWL: classes, propriedades, construcoes
-│   └── data.ttl           # Dados instanciados: 27 individuos, 284+ triples
+│   └── data.ttl           # Dados instanciados: 33 individuos, 284+ triples
 └── src/
     └── main.py            # Script Python: carregamento + consultas
 ```
